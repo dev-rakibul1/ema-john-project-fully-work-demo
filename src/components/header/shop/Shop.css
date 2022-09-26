@@ -1,0 +1,20 @@
+.shop {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  padding-left: 140px;
+  padding-right: 140px;
+  margin-top: 7rem;
+}
+.shopping-card {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 20px;
+}
+
+.brand-name {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.004em;
+}

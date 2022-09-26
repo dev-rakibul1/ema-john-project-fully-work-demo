@@ -1,0 +1,17 @@
+.header {
+  background-color: #1c2b35;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 140px;
+  padding-left: 140px;
+}
+
+.header a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 17px;
+  margin-left: 36px;
+  text-transform: capitalize;
+}
