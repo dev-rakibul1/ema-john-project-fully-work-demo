@@ -30,12 +30,23 @@ const Shop = () => {
     setCart(savedCard);
   }, [products]);
 
-  console.log(cart);
+  // console.log(cart);
 
-  const addToCardHandler = (products) => {
-    const newCart = [...cart, products];
+  const addToCardHandler = (selectedProducts) => {
+    let newCart = [];
+
+    const exists = cart.find((product) => product.id === selectedProducts.id);
+    if (!exists) {
+      selectedProducts.quantity = 1;
+      newCart = [...cart, selectedProducts];
+    } else {
+      const rest = cart.filter((product) => product.id !== selectedProducts.id);
+      exists.quantity = exists.quantity + 1;
+      newCart = [...rest, exists];
+    }
+
     setCart(newCart);
-    addToDb(products.id);
+    addToDb(selectedProducts.id);
   };
 
   const totalValue = cart.reduce(

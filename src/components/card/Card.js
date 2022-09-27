@@ -4,10 +4,13 @@ import "./Card.css";
 const Card = ({ cart }) => {
   let total = 0;
   let shipping = 0;
+  let quantity = 0;
   for (let product of cart) {
-    total = total + product.price;
+    quantity = quantity + product.quantity;
+    total = total + product.price * product.quantity;
     shipping = shipping + product.shipping;
   }
+  // console.log(quantity);
 
   // TOTAL TAX
   const totalTax = (total * 0.1).toFixed(2);
@@ -19,7 +22,7 @@ const Card = ({ cart }) => {
   return (
     <div className="card-summary">
       <h4>Order summary</h4>
-      <p>Select items : {cart.length}</p>
+      <p>Select items : {quantity}</p>
       <p>Total Price: ${total} </p>
       <p>Shipping charge: ${shipping}</p>
       <p>Tax: ${tax}</p>
