@@ -1,7 +1,7 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ cart }) => {
+const Card = ({ cart, clearCart, children }) => {
   let total = 0;
   let shipping = 0;
   let quantity = 0;
@@ -28,6 +28,8 @@ const Card = ({ cart }) => {
       <p>Tax: ${tax}</p>
       <h4>Total Grand: ${grandTotal}</h4>
       {/* <p>Total: $ {totalValue}</p> */}
+      <button onClick={clearCart}>Clear cart</button>
+      {children}
     </div>
   );
 };

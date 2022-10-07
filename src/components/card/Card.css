@@ -2,3 +2,14 @@
   position: sticky;
   top: 0;
 }
+
+button {
+  width: 100%;
+  border: none;
+  padding: 10px 15px;
+  background: #ffa0a0;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}

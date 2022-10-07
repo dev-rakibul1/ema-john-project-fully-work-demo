@@ -1,0 +1,42 @@
+img {
+  max-width: 91px;
+}
+
+.review {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #000;
+  margin-top: 5px;
+  align-items: center;
+  padding: 10px;
+}
+
+.details-wrap {
+  flex-grow: 10;
+}
+.btn-wrap {
+  flex-grow: 1;
+}
+.img-wrap {
+  flex-grow: 1;
+}
+
+.article h4,
+.article p {
+  margin: 0;
+}
+
+.delete-icon {
+  font-size: 31px;
+  color: #e85757;
+}
+
+.delete-btn {
+  background-color: #fbd3d3;
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+}
