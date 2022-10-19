@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Card.css";
 
 const Card = ({ cart, clearCart, children }) => {
@@ -28,7 +29,11 @@ const Card = ({ cart, clearCart, children }) => {
       <p>Tax: ${tax}</p>
       <h4>Total Grand: ${grandTotal}</h4>
       {/* <p>Total: $ {totalValue}</p> */}
-      <button onClick={clearCart}>Clear cart</button>
+      {/* <button onClick={clearCart}>Clear cart</button> */}
+
+      <Link to="/shipping">
+        <button>Proceed Shipping</button>
+      </Link>
       {children}
     </div>
   );

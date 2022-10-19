@@ -2,12 +2,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Shop from "./components/header/shop/Shop";
 import About from "./components/pages/about/About";
-import Inventory from "./components/pages/inventory/Inventory";
 import Login from "./components/pages/login/Login";
 import Order from "./components/pages/order/Order";
-import Reviews from "./components/pages/reviews/Reviews";
+import Shipping from "./components/pages/shipping/Shipping";
+import SignUp from "./components/pages/SignUp/SignUp";
 import Main from "./layout/Main";
 import productsAndCardLoaders from "./loaders/productsAndCardLoaders";
+import PrivateRoutes from "./routes/PrivateRoutes";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,23 +24,33 @@ function App() {
         {
           path: "/order",
           loader: productsAndCardLoaders,
-          element: <Order />,
+          element: (
+            <PrivateRoutes>
+              {" "}
+              <Order />
+            </PrivateRoutes>
+          ),
         },
         {
           path: "/about",
           element: <About />,
         },
+
         {
-          path: "/reviews",
-          element: <Reviews />,
-        },
-        {
-          path: "/inventory",
-          element: <Inventory />,
+          path: "/shipping",
+          element: (
+            <PrivateRoutes>
+              <Shipping />
+            </PrivateRoutes>
+          ),
         },
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/signup",
+          element: <SignUp />,
         },
       ],
     },

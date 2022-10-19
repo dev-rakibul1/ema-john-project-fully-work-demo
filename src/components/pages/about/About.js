@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "./../../../userContext/UserContext";
 
 const About = () => {
-  return (
-    <div>
-      <h1>About components</h1>
-    </div>
-  );
+  const { user } = useContext(AuthContext);
+  return <div>email: {user?.email}</div>;
 };
 
 export default About;

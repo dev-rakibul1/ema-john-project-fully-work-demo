@@ -1,43 +1,44 @@
 import React, { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "./../../../userContext/UserContext";
-import "./Login.css";
 
-const Login = () => {
-  const { userLogin } = useContext(AuthContext);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [error, setError] = useState("Login fail!");
+const SignUp = () => {
+  const [wrongPass, setWrongPass] = useState("");
+  const { createUser } = useContext(AuthContext);
 
-  const from = location.state?.from?.pathname || "/";
-
-  const loginPagesHandler = (event) => {
+  const signUpFormHandler = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    const confirm = form.conPassword.value;
+    console.log(email, password, confirm);
 
-    console.log(email, password);
+    if (password.length < 8) {
+      setWrongPass("Your password must be less then 8 character");
+      return;
+    }
 
-    userLogin(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
+    if (password !== confirm) {
+      setWrongPass("Your password does not match");
+      return;
+    }
+    setWrongPass([]);
+
+    // create user
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
         console.log(user);
-        form.reset();
-        navigate(from, { replace: true });
-        setError("login success");
       })
-      .then((err) => {
-        console.log(err);
-        setError(true);
-      });
+      .catch((err) => console.log(err));
   };
 
   return (
     <div className="form-wrap">
       <h1 className="signup-title">Login</h1>
 
-      <form onSubmit={loginPagesHandler}>
+      <form onSubmit={signUpFormHandler}>
         {/* email */}
         <div className="form-control">
           <label htmlFor="email">Email</label>
@@ -60,15 +61,26 @@ const Login = () => {
             className="form-input"
           />
         </div>
+        {/* confirm password */}
+        <div className="form-control">
+          <label htmlFor="conPassword">Confirm Password</label>
+          <input
+            type="Confirm password"
+            name="conPassword"
+            id="conPassword"
+            placeholder="Confirm password"
+            className="form-input"
+          />
+        </div>
 
         <div className="form-control">
-          <p>{error}</p>
+          <p style={{ color: "red" }}>{wrongPass}</p>
           <button>Login</button>
         </div>
       </form>
       <div className="form-control">
         <p>
-          New to Ema Jon <Link to="/signup">Create New Account</Link>
+          Already have an account <Link to="/login">Sign in</Link>
         </p>
         <p className="or">or</p>
         <button>Continue with Google</button>
@@ -77,4 +89,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
